@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            height: 100vh;
+            transition: 0.5s;
+        }
+
+        .colorPicker {
+            height: 120px;
+            width: 300px;
+            border-radius: 2px;
+            background-color: antiquewhite;
+            box-shadow:0 0 20px rgba(0,0,255,0.6);
+        }
+
+        #colorCode {
+            font-family: 'Courier New', Courier, monospace;
+            color: black;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        #seperate {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #changeColor {
+            height: 35px;
+            width: 115px;
+            border-radius: 2px;
+            border: none;
+            font-size: 20px;
+            opacity: 0.9;
+            outline: 1px dashed black;
+            font-weight: 800;
+            outline-offset: 1px;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: red;
+            transition: all 0.5s;
+        }
+
+        #changeColor:hover {
+            transform: scale(0.92);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body id="main">
+    <div class="colorPicker">
+        <h2 id="colorCode">hdns</h2>
+        <div id="seperate">
+            <button id="changeColor">Click</button>
+        </div>
+    </div>
+</body>
+<script>
+    const colorCode = document.querySelector("#colorCode");
+    const changeColor = document.querySelector("#changeColor");
+    const bg = document.querySelector("#main");
+
+    const generateCode = () => {
+        const randomNumber = Math.floor(Math.random() * 16777215);
+        const intoString = randomNumber.toString(16);
+        const color = "#" + intoString;
+        bg.style.background = color;
+        colorCode.innerHTML = color;
+        navigator.clipboard.writeText(color); // for copy code
+    }
+    changeColor.addEventListener('click', generateCode);
+    generateCode();
+
+
+
+
+
+</script>
+
+</html>
